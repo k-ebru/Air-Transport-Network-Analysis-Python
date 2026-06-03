@@ -5,11 +5,6 @@ __pycache__/
 venv/
 env/
 
-# Data files (not included in repo — see data/README.md)
-data/*.csv
-data/*.xlsx
-data/*.xls
-
 # Generated outputs
 Airports_Cleaned.csv
 
