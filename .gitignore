@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Data files (not included in repo — see data/README.md)
+data/*.csv
+data/*.xlsx
+data/*.xls
+
+# Generated outputs
+Airports_Cleaned.csv
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
