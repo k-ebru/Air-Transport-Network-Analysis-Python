@@ -90,6 +90,8 @@ air-transport-network-analysis-python/
 │   └── core_periphery.png
 │
 └── data/
+    ├── Airports.csv
+    ├── Flight Data.xlsx
     └── README.md
 ```
 
@@ -106,8 +108,8 @@ cd notebooks
 jupyter notebook
 ```
 
-Open the notebooks in order (01 → 02 → 03). The data files should be placed
-in `data/` — see `data/README.md` for details.
+Open the notebooks in order (01 → 02 → 03). The data files are included in
+`data/` — no additional downloads required.
 
 ---
 

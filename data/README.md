@@ -1,19 +1,14 @@
 # Data
 
 This project uses one month of flight data and an airport reference dataset.
+Both files are included in this folder.
 
-## Files required
+## Files
 
 | File | Description |
 |------|-------------|
 | `Airports.csv` | Airport codes, names, countries and geographic coordinates |
 | `Flight Data.xlsx` | Domestic and international flight records with source, target, country and weight columns |
-
-## How to obtain
-
-The datasets are available on [Kaggle](https://www.kaggle.com/) under the search
-term "airport flight data". Place the downloaded files in this folder before
-running the notebooks.
 
 ## Notes
 
