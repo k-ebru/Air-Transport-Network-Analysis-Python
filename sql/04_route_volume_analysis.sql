@@ -1,5 +1,7 @@
--- Analyse the busiest domestic route pairs in the four selected countries.
--- Source-target and target-source records are combined into the same route.
+/*
+Analyse the busiest domestic route pairs in the four selected countries.
+Source and target records are combined into the same route.
+*/
 
 WITH ranked_routes AS (
     SELECT

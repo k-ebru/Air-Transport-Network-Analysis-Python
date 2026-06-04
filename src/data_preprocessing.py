@@ -48,17 +48,17 @@ def correct_coordinates(airports):
     southern hemisphere.  USA: eight airports with incorrect positions are
     corrected using publicly available location data.
 
-    Only coordinates are changed — all network connections are preserved.
+    Only coordinates are changed. All network connections are preserved.
     """
     airports = airports.copy()
     airports["is_corrected"] = False
 
-    # Australia — positive latitudes should be negative
+    # Australia: positive latitudes should be negative
     aus_mask = (airports["country"] == "Australia") & (airports["Lat"] > 0)
     airports.loc[aus_mask, "is_corrected"] = True
     airports.loc[aus_mask, "Lat"] = airports.loc[aus_mask, "Lat"] * -1
 
-    # USA — manually corrected airports
+    # USA: manually corrected airports
     usa_corrections = {
         "SYL": {"Lat": 35.7197, "Lon": -120.7633},
         "ARA": {"Lat": 30.0378, "Lon": -91.8839},

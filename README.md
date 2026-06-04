@@ -10,23 +10,54 @@ explain the differences between countries.
 
 ## What I Analysed
 
-- cleaned airport coordinates and corrected visible geospatial errors
-- built domestic flight networks with airports as nodes and flights as weighted edges
-- compared weighted degree, betweenness centrality, assortativity and core size
-- interpreted the results by country, not only as charts
-- used GDP ranking as external context for the core-periphery comparison
-- added SQL queries that mirror the same airport and route checks in a relational format
+I cleaned visible coordinate errors in the airport data, built domestic flight
+networks with airports as nodes and flights as weighted edges, and compared the
+countries using weighted degree, betweenness centrality, assortativity and core
+size. I also used GDP ranking as economic context for the core and periphery
+comparison, then added SQL queries for the same airport and route checks in a
+relational format.
 
 ## Main Findings
 
-| Country | GDP rank used as context | Assortativity | Core size | Main interpretation |
-|---|---:|---:|---:|---|
-| United States | 1 | -0.198 | 41 | Large network core with strong hub-spoke behaviour and some critical bridge airports |
-| China | 2 | -0.397 | 23 | Most hub-focused network, with traffic strongly concentrated around major eastern hubs |
-| United Kingdom | 6 | -0.119 | 16 | More compact and distributed network, with less extreme hub dependence |
-| Australia | 15 | -0.230 | 9 | Coastal hub-spoke network shaped by long distances and a small number of key hubs |
+<table>
+  <tr>
+    <th>Country</th>
+    <th>GDP rank used as context</th>
+    <th>Assortativity</th>
+    <th>Core size</th>
+    <th>Main interpretation</th>
+  </tr>
+  <tr>
+    <td>United States</td>
+    <td>1</td>
+    <td>&minus;0.198</td>
+    <td>41</td>
+    <td>Large network core with strong hub and spoke behaviour and some critical bridge airports</td>
+  </tr>
+  <tr>
+    <td>China</td>
+    <td>2</td>
+    <td>&minus;0.397</td>
+    <td>23</td>
+    <td>Most hub focused network, with traffic strongly concentrated around major eastern hubs</td>
+  </tr>
+  <tr>
+    <td>United Kingdom</td>
+    <td>6</td>
+    <td>&minus;0.119</td>
+    <td>16</td>
+    <td>More compact and distributed network, with less extreme hub dependence</td>
+  </tr>
+  <tr>
+    <td>Australia</td>
+    <td>15</td>
+    <td>&minus;0.230</td>
+    <td>9</td>
+    <td>Coastal hub and spoke network shaped by long distances and a small number of key hubs</td>
+  </tr>
+</table>
 
-The core-periphery result was one of the most interesting parts of the project.
+The core and periphery result was one of the most interesting parts of the project.
 The larger economies in the comparison have larger network cores. This suggests
 that more airports share the important network functions, which can improve
 robustness, even if it is not always the most economically efficient structure.
@@ -34,7 +65,7 @@ robustness, even if it is not always the most economically efficient structure.
 ## Country Notes
 
 **United States:** the network is large and geographically spread out. It has a
-clear hub-spoke pattern, but one moderate-degree airport has very high
+clear hub and spoke pattern, but one airport with moderate degree has very high
 betweenness. I interpreted this as a bridge role for more isolated regions such
 as Alaska or Hawaii.
 
@@ -45,9 +76,9 @@ major hubs.
 
 **United Kingdom:** the network is compact, with shorter domestic distances and
 a weaker link between degree and betweenness. This points to a more distributed
-multi-hub structure.
+network with several important hubs.
 
-**Australia:** airports are mostly coastal and long-distance links are important.
+**Australia:** airports are mostly coastal and long distance links are important.
 Several airports have strategic value because they connect remote areas, even
 when they are not the largest by direct flight volume.
 
@@ -55,36 +86,47 @@ when they are not the largest by direct flight volume.
 
 I also used the Random Geometric Graph idea from the literature to think about
 future network changes. In this framework, the probability of a connection
-depends on distance and a distance-penalty parameter. I treated that parameter
+depends on distance and a distance penalty parameter. I treated that parameter
 as a proxy for fuel price and operating cost.
 
-When fuel prices are high, long-distance routes become less attractive. Large
+When fuel prices are high, long distance routes become less attractive. Large
 countries such as the USA and Australia would be more affected, and smaller or
-medium-sized aircraft may become more suitable on some routes. When fuel prices
-are low, long-distance hub-spoke links become easier to maintain, so large hubs
-and high-capacity aircraft become more important again.
+medium sized aircraft may become more suitable on some routes. When fuel prices
+are low, long distance hub links become easier to maintain, so large hubs and
+high capacity aircraft become more important again.
 
 ## Selected Figures
 
-| Cleaned spatial networks | Weighted degree rank |
-|---|---|
-| ![Cleaned domestic networks](figures/cleaned_network_maps.png) | ![Weighted degree rank](figures/weighted_degree_rank.png) |
-
-| Assortativity | Core-periphery |
-|---|---|
-| ![Assortativity](figures/assortativity.png) | ![Core-periphery](figures/core_periphery.png) |
+<table>
+  <tr>
+    <th>Cleaned spatial networks</th>
+    <th>Weighted degree rank</th>
+  </tr>
+  <tr>
+    <td><img src="figures/cleaned_network_maps.png" alt="Cleaned domestic networks"></td>
+    <td><img src="figures/weighted_degree_rank.png" alt="Weighted degree rank"></td>
+  </tr>
+  <tr>
+    <th>Assortativity</th>
+    <th>Core and periphery</th>
+  </tr>
+  <tr>
+    <td><img src="figures/assortativity.png" alt="Assortativity"></td>
+    <td><img src="figures/core_periphery.png" alt="Core and periphery"></td>
+  </tr>
+</table>
 
 ## Repository Structure
 
 ```text
 air-transport-network-analysis-python/
-├── data/          # input airport and flight datasets
-├── figures/       # saved outputs used in this README
-├── notebooks/     # analysis workflow in three notebooks
-├── sql/           # relational versions of the main checks
-├── src/           # reusable Python functions
-├── README.md
-└── requirements.txt
+data/
+figures/
+notebooks/
+sql/
+src/
+README.md
+requirements.txt
 ```
 
 ## How to Run
@@ -108,21 +150,20 @@ and airport points without the background map.
 ## SQL Folder
 
 The SQL files show how I would reproduce the main checks if the flight data were
-loaded into a PostgreSQL-style relational database. They cover:
+loaded into a PostgreSQL style relational database.
 
-- table structure for airport and flight records
-- domestic flight summaries for the four analysed countries
-- airport hub ranking using source and target traffic volume
-- busiest domestic route pairs
+The queries cover the table structure, domestic flight summaries for the four
+countries, airport hub ranking using source and target traffic volume, and the
+busiest domestic route pairs.
 
 The Python notebooks remain the main analysis because the network metrics
 require graph operations from NetworkX.
 
 ## References Used in the Analysis
 
-- Guo et al. (2019), *Global air transport complex network: multi-scale analysis*
-- Ersoz and Aldemir (2024), complex network analysis of European air transport
-- GDP ranking context from the nominal GDP country ranking used in the original analysis
+1. Guo et al. (2019), *Global air transport complex network: multi scale analysis*
+2. Ersoz and Aldemir (2024), complex network analysis of European air transport
+3. GDP ranking context from the nominal GDP country ranking used in the original analysis
 
 ## Tech Stack
 

@@ -1,10 +1,12 @@
--- Schema definition for the air transport network analysis.
--- Designed for PostgreSQL-style relational analysis.
---
--- The airport reference file can contain the same airport code in more than
--- one country, so airport_code is indexed but not used as the primary key.
--- Expected airport column mapping from the CSV:
--- id -> airport_code, label -> airport_name, Lat -> latitude, Lon -> longitude.
+/*
+Schema definition for the air transport network analysis.
+
+The airport reference file can contain the same airport code in more than one
+country, so airport_code is indexed but not used as the primary key.
+
+Expected airport column mapping from the CSV:
+id to airport_code, label to airport_name, Lat to latitude, Lon to longitude.
+*/
 
 CREATE TABLE IF NOT EXISTS airports (
     airport_key  BIGSERIAL PRIMARY KEY,

@@ -73,12 +73,11 @@ def plot_network_map(merged, airports, country_name, ax, show_corrections=True):
 
 
 def plot_weighted_degree(ranks, sorted_kw, country_name, ax):
-    ax.semilogy(ranks, sorted_kw, marker=".", linestyle="-", color="purple",
-                alpha=0.6)
+    ax.semilogy(ranks, sorted_kw, marker=".", color="purple", alpha=0.6)
     ax.set_title(f"{country_name} (Nodes: {len(ranks)})")
     ax.set_xlabel("Node rank r (descending by k_w)")
     ax.set_ylabel("Weighted degree k_w (log scale)")
-    ax.grid(True, which="both", ls="--", alpha=0.3)
+    ax.grid(True, which="both", linestyle=":", alpha=0.3)
 
 
 def plot_degree_betweenness(x, y, country_name, ax, log=False):
@@ -93,7 +92,7 @@ def plot_degree_betweenness(x, y, country_name, ax, log=False):
         xlabel += " (log)"
         ylabel += " (log)"
         ax.margins(0.4)
-        ax.grid(True, which="both", ls="--", alpha=0.3)
+        ax.grid(True, which="both", linestyle=":", alpha=0.3)
     else:
         ax.grid(True, alpha=0.3)
     ax.set_xlabel(xlabel)
@@ -115,13 +114,13 @@ def plot_assortativity(k_vals, knn_vals, sorted_k, avg_knn, r_val,
 def plot_kplus_core(ranks, k_plus_curve, peak_rank, peak_val, country_name, ax):
     ax.plot(ranks, k_plus_curve, color="green", linewidth=1.5)
     if peak_rank > 0:
-        ax.axvline(x=peak_rank, color="red", linestyle="--",
+        ax.axvline(x=peak_rank, color="red", linestyle=":",
                    label=f"Core rank r* = {peak_rank}")
         ax.scatter([peak_rank], [peak_val], color="red", s=50, zorder=5)
         ax.annotate(f"max k+ = {peak_val}", xy=(peak_rank, peak_val),
                     xytext=(6, 6), textcoords="offset points")
     ax.set_title(f"{country_name} (Core size ~ {peak_rank})")
     ax.set_xlabel("Node rank r (descending by unweighted degree k)")
-    ax.set_ylabel("k+ (links to higher-ranked nodes)")
+    ax.set_ylabel("k+ (links to higher ranked nodes)")
     ax.legend()
     ax.grid(True, alpha=0.3)

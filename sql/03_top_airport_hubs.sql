@@ -1,7 +1,9 @@
--- Identify the top domestic airport hubs by weighted degree.
---
--- The Python graph is undirected, so this query counts both outgoing and
--- incoming domestic traffic for each airport before ranking hubs.
+/*
+Identify the top domestic airport hubs by weighted degree.
+
+The Python graph is undirected, so this query counts both outgoing and incoming
+domestic traffic for each airport before ranking hubs.
+*/
 
 WITH domestic_links AS (
     SELECT

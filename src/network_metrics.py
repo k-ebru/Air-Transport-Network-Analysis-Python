@@ -1,5 +1,5 @@
 """Network metric calculations: weighted degree, betweenness, assortativity
-and k+ core-periphery identification."""
+and k+ core and periphery identification."""
 
 import numpy as np
 import networkx as nx
@@ -25,8 +25,8 @@ def degree_betweenness(G):
 
 
 def assortativity(G):
-    """Return the degree assortativity coefficient together with per-node
-    degree and average-neighbour-degree arrays."""
+    """Return the degree assortativity coefficient together with per node
+    degree and average neighbour degree arrays."""
     r = nx.degree_assortativity_coefficient(G, weight=None)
     knn = nx.average_neighbor_degree(G, weight=None)
     deg = dict(G.degree())

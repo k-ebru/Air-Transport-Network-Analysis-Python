@@ -8,7 +8,7 @@ def build_graph(flights, country):
     """Construct an undirected weighted graph for a country's domestic
     flights.
 
-    Self-loops are removed.  Parallel flights between the same pair of
+    Self loops are removed.  Parallel flights between the same pair of
     airports are aggregated by summing their weights.
     """
     df = flights[

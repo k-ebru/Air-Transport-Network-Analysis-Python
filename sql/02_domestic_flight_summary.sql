@@ -1,5 +1,7 @@
--- Aggregate domestic flight statistics for the four countries analysed in the
--- Python notebooks.
+/*
+Aggregate domestic flight statistics for the four countries analysed in the
+Python notebooks.
+*/
 
 SELECT
     source_country                  AS country,
