@@ -1,6 +1,5 @@
--- Analyse the busiest domestic routes and identify concentration patterns.
--- Useful for understanding whether traffic follows a hub-spoke or
--- point-to-point distribution.
+-- Analyse the busiest domestic route pairs in the four selected countries.
+-- Source-target and target-source records are combined into the same route.
 
 WITH ranked_routes AS (
     SELECT
@@ -14,6 +13,7 @@ WITH ranked_routes AS (
         ) AS route_rank
     FROM flights
     WHERE source_country = target_country
+      AND source_country IN ('USA', 'China', 'United Kingdom', 'Australia')
     GROUP BY LEAST(source, target), GREATEST(source, target), source_country
 )
 SELECT

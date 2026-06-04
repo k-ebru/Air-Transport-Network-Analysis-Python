@@ -1,8 +1,8 @@
-pandas
-numpy
-networkx
-geopandas
-matplotlib
-openpyxl
-ipython
-jupyter
+pandas>=2.2,<4
+numpy>=1.26,<3
+networkx>=3.2,<4
+geopandas>=1.0,<2
+matplotlib>=3.8,<4
+openpyxl>=3.1,<4
+ipykernel>=6,<8
+nbconvert>=7,<8

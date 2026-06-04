@@ -1,7 +1,7 @@
 # Data
 
 This project uses one month of flight data and an airport reference dataset.
-Both files are included in this folder.
+Both files are included in this folder so the notebooks can be rerun.
 
 ## Files
 
@@ -17,3 +17,7 @@ Both files are included in this folder.
   corrected programmatically in `src/data_preprocessing.py`.
 - Only domestic flights (source country == target country) are used in the
   analysis.
+- The airport reference file contains one duplicated airport code (`HRZ`) for
+  different countries. The Python analysis uses the country-filtered flight
+  records, and the SQL schema avoids treating airport code alone as a unique
+  primary key.

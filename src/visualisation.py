@@ -10,10 +10,13 @@ _WORLD = None
 def _get_world():
     global _WORLD
     if _WORLD is None:
-        _WORLD = gpd.read_file(
-            "https://naturalearth.s3.amazonaws.com/110m_cultural/"
-            "ne_110m_admin_0_countries.zip"
-        )
+        try:
+            _WORLD = gpd.read_file(
+                "https://naturalearth.s3.amazonaws.com/110m_cultural/"
+                "ne_110m_admin_0_countries.zip"
+            )
+        except Exception:
+            _WORLD = False
     return _WORLD
 
 
@@ -29,7 +32,10 @@ def plot_network_map(merged, airports, country_name, ax, show_corrections=True):
     show_corrections : if True, highlight coordinate-corrected airports
     """
     world = _get_world()
-    world.plot(ax=ax, color="#f0f0f0", edgecolor="white")
+    if world is not False:
+        world.plot(ax=ax, color="#f0f0f0", edgecolor="white")
+    else:
+        ax.set_facecolor("#f7f7f7")
 
     ax.plot(
         [merged.Lon_S, merged.Lon_T],
