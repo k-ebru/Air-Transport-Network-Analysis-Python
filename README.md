@@ -167,3 +167,7 @@ air-transport-network-analysis-python/
 1. Guo et al. (2019), *Global air transport complex network: multi scale analysis*
 2. Ersoz and Aldemir (2024), complex network analysis of European air transport
 3. Nominal GDP country ranking used as context in the original analysis
+
+## License
+
+The project code is released under the MIT License.
